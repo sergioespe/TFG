@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String   @id @default(uuid())
+  id_slack             String
+  name                 String   @db.VarChar(255)
+  email                String   @unique
+  password             String
+  role                 Role     @default(WORKER)
+  max_words            Int      @default(2000)
+  current_availability Int
+  last_assignment      DateTime @default(now())
+  removed              Boolean  @default(false)
+  assignedTasks        Task[]   @relation(name: "AssignedTasks")
+  translatedTasks      Task[]   @relation(name: "TranslatedTasks")
+}
+
+enum Role {
+  WORKER
+  MANAGER
+}
+
+model Task {
+  id           String   @id @default(uuid())
+  payload      String
+  url          String
+  word_length  Int
+  status       Status   @default(PENDING)
+  assigneeId   String?
+  assignee     User?    @relation(name: "AssignedTasks", fields: [assigneeId], references: [id])
+  translatorId String?
+  translator   User?    @relation(name: "TranslatedTasks", fields: [translatorId], references: [id])
+  update_time  DateTime
+  due_date     DateTime
+}
+
+enum Status {
+  PENDING
+  REVIEW
+  COMPLETED
+}

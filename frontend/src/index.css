@@ -1,0 +1,42 @@
+#p1{
+    margin: 0px;
+    margin-top: 5px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+#span1{
+    box-sizing: border-box;
+    margin: 0px;
+    font-size: 14pt;
+    font-family: Montserrat, sans-serif;
+    color: rgb(255, 164, 0);
+    background-color: transparent;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    vertical-align: baseline;
+    white-space: pre-wrap;
+}
+
+#span2{
+    box-sizing: border-box;
+    font-size: 14pt;
+    font-family: Montserrat, sans-serif;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    vertical-align: baseline;
+    white-space: pre-wrap;
+}
+
+#span3{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 8pt;
+    font-family: Montserrat, sans-serif;
+}
+
+#br1{
+    height: 0px;
+}
